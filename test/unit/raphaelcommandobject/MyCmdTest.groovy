@@ -7,7 +7,7 @@ import spock.lang.Specification
 class MyCmdTest extends Specification {
     void "coercion from map works"() {
         given:
-        def values = [description: "Test", someType: "foos"]
+        def values = [description: "Test", some: "foos"]
 
         when:
         def cmd = values as MyCmd
@@ -15,12 +15,12 @@ class MyCmdTest extends Specification {
         then:
         cmd != null
         cmd.description == "Test"
-        cmd.someType == SomeType.Foo
+        cmd.some == SomeType.Foo
     }
 
     void "map constructor works"() {
         given:
-        def values = [description: "Test", someType: "foos"]
+        def values = [description: "Test", some: "foos"]
 
         when:
         def cmd = new MyCmd(values)
@@ -28,12 +28,12 @@ class MyCmdTest extends Specification {
         then:
         cmd != null
         cmd.description == "Test"
-        cmd.someType == SomeType.Foo
+        cmd.some == SomeType.Foo
     }
 
     void "data bind works"() {
         given:
-        def values = [description: "Test", someType: "foos"]
+        def values = [description: "Test", some: "foos"]
 
         when:
         def cmd = new MyCmd()
@@ -42,6 +42,6 @@ class MyCmdTest extends Specification {
         then:
         cmd != null
         cmd.description == "Test"
-        cmd.someType == SomeType.Foo // note how this fails
+        cmd.some == SomeType.Foo
     }
 }

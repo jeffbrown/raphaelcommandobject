@@ -10,8 +10,9 @@ class RegistrationControllerSpec extends Specification {
         when: 'json is posted to the controller action'
         request.method = 'POST'
         request.json = '''
-                            {"description":"Some Description",
-                             "someType": "foos"
+                            {
+                              "description": "Some Description",
+                              "some": "foos"
                             }
                        '''
         controller.myAction() // note how this silently fails: data binding yields `someType == null`.

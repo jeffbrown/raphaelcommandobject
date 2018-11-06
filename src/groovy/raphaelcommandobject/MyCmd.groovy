@@ -1,13 +1,18 @@
 package raphaelcommandobject
 
 import grails.validation.Validateable
+import org.grails.databinding.BindUsing
 
 @Validateable
 class MyCmd {
-    SomeType someType
+    @BindUsing({ newCmd, jsonMap ->
+        SomeType.fromJson(jsonMap['some'])
+    })
+    SomeType some
+
     String description
 
-    void setSomeType(Object jsonValue) {
-        this.someType = SomeType.fromJson(jsonValue)
+    void setSome(Object jsonValue) {
+        this.some = SomeType.fromJson(jsonValue)
     }
 }
