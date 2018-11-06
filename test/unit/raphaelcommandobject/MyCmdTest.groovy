@@ -1,5 +1,7 @@
 package raphaelcommandobject
 
+
+import org.codehaus.groovy.grails.web.binding.DataBindingUtils
 import spock.lang.Specification
 
 class MyCmdTest extends Specification {
@@ -27,5 +29,19 @@ class MyCmdTest extends Specification {
         cmd != null
         cmd.description == "Test"
         cmd.someType == SomeType.Foo
+    }
+
+    void "data bind works"() {
+        given:
+        def values = [description: "Test", someType: "foos"]
+
+        when:
+        def cmd = new MyCmd()
+        DataBindingUtils.bindObjectToInstance(cmd, values)
+
+        then:
+        cmd != null
+        cmd.description == "Test"
+        cmd.someType == SomeType.Foo // note how this fails
     }
 }
